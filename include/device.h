@@ -1,0 +1,29 @@
+/*
+ * device.h
+ *
+ *  Created on: May 14, 2018
+ *      Author: root
+ */
+
+#ifndef DEVICE_H_
+#define DEVICE_H_
+
+#include <stdint.h>
+
+#define MASTER		1
+#define SLAVE		2
+
+typedef struct {
+	uint8_t mode;
+	uint8_t speed;
+	uint8_t buff[4096];
+} device_t;
+
+extern device_t *device;
+
+device_t *device_init(uint8_t mode, uint8_t speed);
+int device_send(uint8_t *buff, int length);
+int device_receive(uint8_t *buff);
+int device_release(device_t *device);
+
+#endif /* DEVICE_H_ */
